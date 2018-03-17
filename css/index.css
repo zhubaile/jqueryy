@@ -1,0 +1,27 @@
+*{ padding: 0; margin: 0;}
+.all{ width: 500px; margin: 20px auto; position: relative;}
+.all h1{ text-align: center;}
+.all .header{ width: 500px; margin: auto;}
+.header .header-todo{width: 500px; height: 50px; border-radius: 5px; text-align: center; font-size: 23px;}
+
+.all .center{position: relative; display:none;width: 500px;margin: auto;z-index: 2; border-top: 1px solid #e6e6e6;}
+.center input[type="checkbox" ]{  outline: none;  }
+.center-all{ position:absolute;left: -5px;top: -40px; width: 60px; height: 30px;text-align: center; border: none; -webkit-appearance: none;}
+.center-all:checked:before{ color: #737373;}
+.center-all:before{ content: '>'; font-size: 22px;color: #e6e6e6; padding: 10px 27px;}
+.center ul li{position: relative; width: 500px; height: 50px; border: 1px solid slategrey;}
+.center ul li input{ position: absolute; top: 15px; left: 10px;width:22px;height:22px;cursor:pointer;}
+.center ul li p{position: absolute; left: 50px; line-height: 45px; font-size: 20px; border: none; margin: 0;}
+.center ul li p.error{color: #737373;text-decoration:line-through;}
+.center ul li button{display: none; position: absolute; top: 15px; right: 20px;}
+
+
+.all .fander{display: none; width: 500px; height: 40px; margin: auto;border: 1px solid slategrey;}
+.fander .fander-num{width: 25%; height: 40px; float: left; text-align: center; line-height: 40px;}
+.fander .fander-btn{float: left; width: 50%; height: 40px; background: #fff; text-align: center;}
+.fander .fander-btn .fander-btn-box{ width: 150px; height: 25px; margin: 10px auto;}
+.fander .fander-btn .btn{ float: left; margin-left: 10px;}
+.fander .fander-btn .btn.bode{border: 2px solid black;}
+.fander .fander-end{float: left; width: 25%; height: 40px;text-align: center; line-height: 40px; cursor: pointer;}
+
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+ <div class="all">
+     <h1>待办事项</h1>
+     <div class="header">
+         <input class="header-todo" name="field" type="text" placeholder="What needs to be done?"/>
+     </div>
+
+    <div class="center">
+        <input class="center-all" id="center-all" type="checkbox">
+        </input>
+        <ul class="lost">
+        </ul>
+    </div>
+
+    <div class="fander clearfix">
+        <div class="fander-num">剩下<span id="lostcount"></span>个项目</div>
+        <div class="fander-btn">
+            <div class="fander-btn-box">
+                <button class="btn one">所有</button>
+                <button class="btn two">未完成</button>
+                <button class="btn three">已完成</button>
+            </div>
+        </div>
+        <div class="fander-end clearfix">清理完成</div>
+    </div>
+</div>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
+
