@@ -14,7 +14,8 @@ $(function(){
            }
         }
     });
-    function load(val){
+
+    function load(val){                                  //用jq设置li的内容
         $(".all .fander,.all .center").show();
             $(".lost").append("<li><input class='reo' type='checkbox' name='zbl'/> </input>" +
                 "<p>"+val+"</p>" +
@@ -33,9 +34,13 @@ $(function(){
     }
     yichu();
 
+    $(".destroy").click(function(){               //点击删除li列表
+        $("li").empty();
+    });
     $(".center-all").click(function(){         //全选或者全不全按钮
+        var i=0;
         var coll=$("li>input");
-        if(coll.checked){
+        if(coll[i].checked){
             for(var i=0;i<coll.length;i++){
                 coll[i].checked=false;
             }
@@ -50,7 +55,7 @@ $(function(){
         $(".btn.one").addClass("bode").siblings().removeClass("bode");
         $('li>input').each(function(){
             var $ele=$(this);
-            if ($ele.prop("checked")) {
+            if ($ele.prop("checked")) {                    //prop（）为了检索属性值，设置或返回被选元素的属性和值
                 $ele.closest("li").show();                      //closest()   这个为查找父级元素的；
             } else {
                 $ele.closest("li").show();
