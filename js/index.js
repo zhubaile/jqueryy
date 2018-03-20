@@ -9,7 +9,6 @@ $(function(){
                alert("输入框不能为空");
            }else{
                load(field.val());
-               $("li").hover(function(){$(".destroy").show();},function(){$(".destroy").hide();});  //鼠标放在li上显示删除按钮，鼠标移除则消失；
                field.val("").focus();                            //清除输入框的值
            }
         }
@@ -17,11 +16,17 @@ $(function(){
 
     function load(val){                                  //用jq设置li的内容
         $(".all .fander,.all .center").show();
-            $(".lost").append("<li><input class='reo' type='checkbox' name='zbl'/> </input>" +
-                "<p>"+val+"</p>" +
-                "<button class='destroy'>×</button></li>");
-        $("#lostcount").html($("li>input").length);
+                $(".lost").append("<li><input class='reo' type='checkbox' name='zbl'/> </input>" +
+                    "<p>"+val+"</p>" +
+                    "<a>×</a></li>");
+            $("li").hover(function(){$("a").show();},function(){$("a").hide();});  //鼠标放在li上显示删除按钮，鼠标移除则消失；
+                $("#lostcount").html($("li>input[checkbox=checked]").length);
     }
+    $("a").click(function(){
+        for(var i=$("li").length-1;i>=0;i++){
+            $("li[i]").remove();
+        }
+    });
     function yichu(){                                  //次方法为选中复选框的时候添加error样式;
         $('li>input').each(function(){             //选中li下面的input type=checkbox的值
             var $ele=$(this);
@@ -34,10 +39,7 @@ $(function(){
     }
     yichu();
 
-    $(".destroy").click(function(){               //点击删除li列表
-        $("li").empty();
-    });
-    $(".center-all").click(function(){         //全选或者全不全按钮
+    $(".center-all").click(function(){         //全选或者全不选按钮
         var i=0;
         var coll=$("li>input");
         if(coll[i].checked){
