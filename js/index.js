@@ -24,26 +24,18 @@ $(function(){
                 $(".lost").append("<li><input class='reo' type='checkbox' name='zbl'/> </input>" +
                     "<p>"+val+"</p>" +
                     "<a>×</a></li>");
-                    //add by zhanglizhao
-                    //有没有发现一个bug，有多个li时，移动到任意一个li上，删除按钮就全部出来
-
-
-
-
-
-        $("#todoItems").on("hover", "li", function (event) {
-         var $target=$(event.target);
-            var $aaa=$target.end();                                                     //这个bug我改不了，查了半天不知道用什么元素
-         $target.hover(function(){$aaa.show();},function(){$aaa.hide();});
-         });
-        //$("li").hover(function(){$("a").show();},function(){$("a").hide();});
-
-
-
-
+/*        $("#todoItems").on("mouseenter","li",function(event){
+            var $target=$(event.target);
+            $target.find("a").show()
+        });                                                           //这样是对的，mouseenter，mouseleave为hover的两个状态
+        $("#todoItems") .on("mouseleave","li",function(event){
+            var $target=$(event.target);
+            $target.find("a").hide();
+        });*/
         $("#lostcount").html(($("li>input").length));                    //li减少的时候，li.length的值不会跟着减少！
+                                                                    //设置的时候，选中状态的时候不会自动减少，我就清除代码了；不会写了
 
-        
+
     }
     //add by zhanglizhao 
     //解决li上面的叉，点击没反应问题，a元素的事件绑定未绑定上
@@ -69,9 +61,9 @@ $(function(){
         $('li>input').each(function(){           //选中的时候不知道为啥不增加class样式?
             var $ele=$(this);
             if ($ele.prop("checked")) {
-                $ele.next("p").addClass("error");
+                $ele.find("p").addClass("error");
             } else {
-                $ele.next("p").removeClass("error");
+                $ele.find("p").removeClass("error");
             }
         });
     }
