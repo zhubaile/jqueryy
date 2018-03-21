@@ -20,8 +20,17 @@ $(function(){
                     "<p>"+val+"</p>" +
                     "<a>×</a></li>");
             $("li").hover(function(){$("a").show();},function(){$("a").hide();});  //鼠标放在li上显示删除按钮，鼠标移除则消失；
-                $("#lostcount").html($("li>input[checkbox=checked]").length);
+        $("#lostcount").html(($("li>input").length));
+/*        var $ele=$("li>input");
+        //控制的变化的任务数量
+        if(!$ele.prop("checked")) {
+            $ele.length++;
+        }else{
+            $ele.length--;
+        }
+        $("#lostcount").html(($ele.length));*/
     }
+
     $("a").click(function(){
         for(var i=$("li").length-1;i>=0;i++){
             $("li[i]").remove();
