@@ -8,13 +8,14 @@ $(function(){
     //还有li上面的叉，点击没反应（也没有弄成单个的li） （答：事件绑定问题，已调整）
 
     var field=$(".header-todo");              //定义输入框
-    field.bind('keypress',function(event){             //键盘事件
+    field.bind('keypress',function(event){             //键盘事件  bind() 方法为被选元素添加一个或多个事件处理程序，并规定事件发生时运行的函数。
         if(event.keyCode=="13"){                           //当按回车时候做出判断
            if(!field.val()){                         //如果输入框为空则alert提示
                alert("输入框不能为空");
            }else{
                load(field.val());
                field.val("").focus();                            //清除输入框的值
+               yichu();
            }
         }
     });
@@ -32,9 +33,10 @@ $(function(){
             var $target=$(event.target);
             $target.find("a").hide();
         });*/
-        $("#lostcount").html(($("li>input").length));                    //li减少的时候，li.length的值不会跟着减少！
-                                                                    //设置的时候，选中状态的时候不会自动减少，我就清除代码了；不会写了
 
+
+        $("#lostcount").html(($("li>input").length));                    //li减少的时候，li.length的值不会跟着减少！
+                                                                        // 设置的时候，选中状态的时候不会自动减少，我就清除代码了；不会写了
 
     }
     //add by zhanglizhao 
@@ -47,7 +49,7 @@ $(function(){
     //下面的a元素可以是后来添加的
 
     $("#todoItems").on("click", "a", function (event) {
-        var $target=$(event.target);
+        var $target=$(event.target);                     //target规定那个元素触发事件
         $target.closest("li").remove();
        /* console.log("当前点击元素为：");
         console.log($target)*/
@@ -61,13 +63,12 @@ $(function(){
         $('li>input').each(function(){           //选中的时候不知道为啥不增加class样式?
             var $ele=$(this);
             if ($ele.prop("checked")) {
-                $ele.find("p").addClass("error");
+                $ele.next("p").addClass("error");
             } else {
-                $ele.find("p").removeClass("error");
+                $ele.next("p").removeClass("error");
             }
         });
     }
-    yichu();
 
 
 
