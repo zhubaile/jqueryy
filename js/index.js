@@ -6,7 +6,6 @@ $(function(){
     //选中的时候不知道为啥不增加class样式，（答：没找到你哪个地方是实现这个功能的，请标记）
     //li减少的时候，li.length的值不会跟着减少！（答：没找到你哪个地方是实现这个功能的，请标记）
     //还有li上面的叉，点击没反应（也没有弄成单个的li） （答：事件绑定问题，已调整）
-
     var field=$(".header-todo");              //定义输入框
     field.bind('keypress',function(event){             //键盘事件
         if(event.keyCode=="13"){                           //当按回车时候做出判断
@@ -18,6 +17,39 @@ $(function(){
            }
         }
     });
+    //=================事件绑定 start====================
+    //鼠标移入li事件 
+    $("#todoItems").on("mouseenter", "li", function (event) {
+        var $target = $(event.target);
+        $target.find("a").show()
+    });
+    //鼠标移出li事件 
+    $("#todoItems").on("mouseleave", "li", function (event) {
+        var $target = $(event.target);
+        $target.find("a").hide()
+    });
+    //删除按钮 点击事件    
+    $("#todoItems").on("click", "a", function (event) {
+        var $target = $(event.target);
+        $target.closest("li").remove();
+    });
+    //checkbox 选择改变事件
+    $("#todoItems").on("change", "input", function (event) {
+        var $target = $(event.target),
+            isChecked = $target.prop("checked"),
+            $targeLi = $target.closest("li");
+            //可查看li已经添加此样式
+        if (isChecked){
+            console.log("li添加样式error")
+            $targeLi.addClass("error")
+        }else{
+            console.log("li移除样式error")
+            $targeLi.removeClass("error")
+        }
+    });
+
+    //=================事件绑定 end====================
+
 
     function load(val){                                  //用jq设置li的内容
         $(".all .fander,.all .center").show();
@@ -31,11 +63,19 @@ $(function(){
 
 
 
-        $("#todoItems").on("hover", "li", function (event) {
-         var $target=$(event.target);
-            var $aaa=$target.end();                                                     //这个bug我改不了，查了半天不知道用什么元素
-         $target.hover(function(){$aaa.show();},function(){$aaa.hide();});
-         });
+        /*
+        //以下删除，移动到上放，因为事件绑定放到这里，每次执行load方法就绑定一次事件
+        //将会导致事件多次绑定，
+        $("#todoItems").on("mouseenter", "li", function (event) {
+         //10此 header-todo 的input回车后，此处当鼠标移入后执行十次。 
+         //这个地方要是还不懂在问我
+            var $target=$(event.target);
+            $target.find("a").show()
+        });
+        $("#todoItems").on("mouseleave", "li", function (event) {
+            var $target = $(event.target);
+            $target.find("a").hide()
+        }); */
         //$("li").hover(function(){$("a").show();},function(){$("a").hide();});
 
 
@@ -54,18 +94,10 @@ $(function(){
     //的意思是在id为todoItems的元素下的a元素上绑定事件，此时$("#todoItems")必须有值，
     //下面的a元素可以是后来添加的
 
-    $("#todoItems").on("click", "a", function (event) {
-        var $target=$(event.target);
-        $target.closest("li").remove();
-       /* console.log("当前点击元素为：");
-        console.log($target)*/
-    });
 
-
-
-
-
-    function yichu(){                                  //次方法为选中复选框的时候添加error样式;
+   /* 
+   //如果想达到此效果，不能用这个方法，故移除此方法
+   function yichu(){                                  //次方法为选中复选框的时候添加error样式;
         $('li>input').each(function(){           //选中的时候不知道为啥不增加class样式?
             var $ele=$(this);
             if ($ele.prop("checked")) {
@@ -75,7 +107,7 @@ $(function(){
             }
         });
     }
-    yichu();
+    yichu(); */
 
 
 
