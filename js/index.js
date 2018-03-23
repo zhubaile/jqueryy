@@ -14,7 +14,7 @@ $(function(){
            }else{
                load(field.val());
                field.val("").focus();                            //清除输入框的值
-               dianji();
+            //    dianji();
            }
         }
     });
@@ -33,18 +33,20 @@ $(function(){
     $("#todoItems").on("click", "a", function (event) {
         var $target = $(event.target);                    //target规定那个元素触发事件
         $target.closest("li").remove();
+        dianji()
     });
     //checkbox 选择改变事件
     $("#todoItems").on("change", "input", function (event) {
         var $target = $(event.target),
             isChecked = $target.prop("checked"),
             $targeLi = $target.next("p");
-            //可查看li已经添加此样式
+            //可查看li已经添加此样式    
         if (isChecked){
             $targeLi.addClass("error")
         }else{
             $targeLi.removeClass("error")
         }
+        dianji()
     });
 
 
@@ -52,6 +54,9 @@ $(function(){
 
     //根据复选框的未选中状态来显示span的数值
     //缺陷：当选中复选框的时候，span里面的数值不会自动减少。
+    //解释：方法调用位置不正确，span数值改变的地方有哪些？
+    //1、新增li时  2、li的checkbox改变时 3、删除todo时  （还有哪些我没想到呢）
+    //这些地方才是执行这个方法的位置
     function dianji(){
         var $aaa=$("li>input:checkbox").not("input:checked");
         if(!$aaa){
@@ -70,6 +75,7 @@ $(function(){
         $(".lost").append("<li><input class='reo' type='checkbox' name='zbl' /> </input>" +
             "<p>" + val + "</p>" +
             "<a>×</a></li>");
+        dianji();
     }
                     
         /*
