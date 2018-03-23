@@ -10,30 +10,50 @@
  <div class="all">
      <h1>todos</h1>
      <div class="header">
-         <input class="header-todo" name="field" type="text" placeholder="What needs to be done?"/>
+         <input id="todoInput" class="header-todo" name="field" type="text" placeholder="What needs to be done?"/>
      </div>
-
+    <div  id="body">
+        
+    </div>
+    <div id="foot"></div>
+</div>
+<script id="todoItemsHbs" type="text/html">
+    {{#if total}}
     <div class="center">
-        <input class="center-all" id="center-all" type="checkbox">
-        <ul class="lost" id="todoItems">
+        <input class="center-all"  type="checkbox">
+        <ul class="lost" >
+            {{#each todos.items}}
+            <li>
+                <input class='reo' type='checkbox' data-num="{{@index}}" {{#if completed}}{{eles}}checked{{/if}}  />
+                <p>{{title}}</p>
+                <a data-num="{{@index}}">×</a>
+            </li>
+            {{/each}}
         </ul>
     </div>
-
+    {{/if}}
+</script>
+<script id="todoFootHbs" type="text/html">
+    {{#if total}}
     <div class="fander clearfix">
-        <div class="fander-num">剩下<span id="lostcount"></span>个项目</div>
+        <div class="fander-num">剩下<span >{{foot.completedNum}}</span>个项目</div>
         <div class="fander-btn">
             <div class="fander-btn-box">
-                <button class="btn one">所有</button>
-                <button class="btn two">未完成</button>
-                <button class="btn three">已完成</button>
+                <button class="btn one {{#if_eq foot.status 'all'}}bode{{/if_eq}}">所有</button>
+                <button class="btn two {{#if_eq foot.status  'active'}}bode{{/if_eq}}">未完成</button>
+                <button class="btn three {{#if_eq foot.status  'completed'}}bode{{/if_eq}}">已完成</button>
             </div>
         </div>
+        {{#if foot.isCleanBtn}}
         <div class="fander-end clearfix">清理完成</div>
+        {{/if}}
     </div>
-</div>
-
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/index.js"></script>
+    {{/if}}
+</script>
+<!-- 考虑到兼容性一般公司更喜欢用1.X版本的jquery -->
+<script src="js/jquery-1.12.4.js"></script>
+<script src="js/handlebars-v4.0.11.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
 
