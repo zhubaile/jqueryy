@@ -14,7 +14,6 @@ $(function(){
            }else{
                load(field.val());
                field.val("").focus();                            //清除输入框的值
-            //    dianji();
            }
         }
     });
@@ -63,8 +62,38 @@ $(function(){
             $aaa.length-=1;
         }
         $("#lostcount").html($aaa.length);  //显示复选框未被选中的值
+        reveal(); cla();
     }
 
+    function reveal(){       //当li为o的时候，隐藏两个界面
+        var $over=$("li>input").length;
+        if($over==0){
+            $(".all .fander,.all .center").hide();
+    }
+    }
+/*    function cla(){                 //当选中 复选框的时候，清理完成按钮显示，否则移除
+        $('li>input').each(function(){
+            //var $ele=$(this);
+            for(var j=0;j<$("li>input").length-1;j++){
+                if ($('li>input').eq().prop("checked")) {
+                    $(".fander-end").show();
+                }else{
+                    $(".fander-end").hide();
+                }
+            }
+        });
+    }*/
+    function cla() {
+        var $liInput = $('li>input');//,hasCheckBox=false;
+        $(".fander-end").hide();
+        $liInput.each(function (item,index) {
+            if ($liInput.eq(index).prop("checked")) {
+               // hasCheckBox=true;
+                $(".fander-end").show();
+            }
+        });
+        //hasCheckBox ? $(".fander-end").show() : $(".fander-end").hide();
+    }
 
 
 
@@ -115,6 +144,7 @@ $(function(){
                 $("li>input").next("p").addClass("error");
             }
         }
+        dianji();cla();
     });
 
     $(".btn.one").click(function(){     //点击所有按钮的时候显示所有li
@@ -158,6 +188,7 @@ $(function(){
                 $ele.closest("li").remove();
             }
         });
+        reveal();
     });
 
 });

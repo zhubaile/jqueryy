@@ -22,6 +22,6 @@
 .fander .fander-btn .fander-btn-box{ width: 150px; height: 25px; margin: 10px auto;}
 .fander .fander-btn .btn{ float: left; margin-left: 10px; border: none; background: #ffffff;}
 .fander .fander-btn .btn.bode{border: 1px solid #ecd7d7;}
-.fander .fander-end{float: left; width: 25%; height: 40px;text-align: center; line-height: 40px; cursor: pointer;}
+.fander .fander-end{display: none; float: left; width: 25%; height: 40px;text-align: center; line-height: 40px; cursor: pointer;}
 
 
