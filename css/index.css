@@ -9,9 +9,13 @@
 .center-all{ position:absolute;left: -5px;top: -40px; width: 60px; height: 30px;text-align: center; border: none; -webkit-appearance: none;}
 .center-all:checked:before{ color: #737373;}
 .center-all:before{ content: '>'; font-size: 22px;color: #e6e6e6; padding: 10px 20px;}
-.center ul li{position: relative; width: 500px; height: 50px; border: 1px solid #e6e6e6;}
-.center ul li input{ position: absolute; top: 17px; left: 10px;width:22px;height:22px;cursor:pointer; color: #4d4d4d;}
-.center ul li p{position: absolute; left: 50px; line-height: 45px; font-size: 20px; border: none; margin: 0;}
+.center ul li{position: relative; width: 500px; height: 60px; border: 1px solid #e6e6e6;}
+.center ul li input{ position: absolute; top: 17px; left: 10px;width:22px;height:22px;cursor:pointer; color: #4d4d4d; -webkit-appearance: none;}
+/*.center ul li input:checked:before{display: block; color: red;}
+.center ul li input:before{display: none; content: '√';font-size: 22px;}*/
+.center ul li input:after{	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>'); }
+.center ul li input:checked:after{ 	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');}
+.center ul li p{position: absolute; left: 60px; line-height: 65px; font-size: 20px; border: none; margin: 0;}
 .center ul li p.error{color: #737373;text-decoration:line-through;}    /*颜色为灰色，加一道中间的横线*/
 .center ul li a{display: none; cursor: pointer; position: absolute; top: 10px; right: 20px; font-size: 25px; color: #cc9a9a;}
 .center ul li:hover a{display: block;}
