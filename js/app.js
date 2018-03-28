@@ -9,7 +9,7 @@ $(function(){
     })
 });
 function Todos(options) {
-    this.opts=$.extend({
+    this.opts=$.extend({                                //$.extend遍历数组对象
         $todoInput: "", //todo 输入区
         $body: "",   //内容区 盒子jquery对象
         $foot: "",  //底部盒子jquery对象
@@ -38,11 +38,11 @@ $.extend(Todos.prototype,{
                     _this.render()
                 }
             }
-        })        
-        //删除按钮 点击事件 
+        })
+        //删除按钮 点击事件
         this.opts.$body.on("click", "a", function (event) {
             var $target = $(event.target)
-            ,index = $target.attr("data-num"); 
+            ,index = $target.attr("data-num");  //attr() 方法设置或返回被选元素的属性值。
             _this.pop(index);
             _this.render();
         })
@@ -51,7 +51,7 @@ $.extend(Todos.prototype,{
                 , index = $target.attr("data-num");
             _this.edit(index, $target.prop("checked"));
             _this.render();
-        })        
+        })
     },
     //界面渲染
     render: function () {
@@ -69,8 +69,8 @@ $.extend(Todos.prototype,{
             status:"all",
             num:1,
             isClean:true
-        } 
-   } 
+        }
+   }
    */
     getData:function(){
         var activeArr = [], completedArr = [], todoItems=[];
@@ -90,11 +90,11 @@ $.extend(Todos.prototype,{
                 break;
             case 'completed':
                 todoItems = completedArr
-                break; 
-            default:
+                break;
+            default:                        //default除了以上情况剩下的为此
                 todoItems = this.todos.items
                 break;
-        } 
+        }
         return {
             total: this.todos.items.length,
             todos: {
@@ -103,7 +103,7 @@ $.extend(Todos.prototype,{
             },
             foot: {
                 status: this.todos.status,
-                completedNum: completedArr.length,
+                completedNum: activeArr.length,
                 isCleanBtn: (todoItems.length > 0)
             }
         };
@@ -123,11 +123,11 @@ $.extend(Todos.prototype,{
                 return value
             }
         });
-        (this.todos.total>0)&&(this.todos.total--);
+        (this.todos.total>0)&&(this.todos.total--);                                              //这句不明白什么意思?
         this.setItem(this.todos.items);
     },
     edit: function (index, completed) {
-        this.todos.items = $.grep(this.todos.items, function (value, eq) {
+        this.todos.items = $.grep(this.todos.items, function (value, eq) {  //$.grep()数组过滤
             if (index == eq) {
                 value["completed"]=completed;
             }
@@ -144,7 +144,7 @@ $.extend(Todos.prototype,{
     getItem:function() {
         var data=localStorage.getItem("todos");
         if(data){
-           return JSON.parse(data);
+           return JSON.parse(data);  //用来解析字符串
         }
         return [];
     }
@@ -154,7 +154,7 @@ $.extend(Todos.prototype,{
 /*
      *Handlebars helper 判断两个字符串是否相当
      * */
-Handlebars.registerHelper('if_eq', function (left,right, options) {
-    if (left == right) return options.fn(this);
+Handlebars.registerHelper('if_eq', function (left,right, options) {         //访问模板
+    if (left == right) return options.fn(this);                                       //这句话也不明白什么意思?
     return options.inverse(this);
 });
