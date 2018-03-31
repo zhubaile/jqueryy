@@ -74,7 +74,7 @@ $.extend(Todos.prototype,{
    */
     getData:function(){
         var activeArr = [], completedArr = [], todoItems=[];
-        this.todos.items.forEach(function (item, index){
+        this.todos.items.forEach(function (item, index){       //forEach()列出数组的每个元素
             if (item.completed){
                 completedArr.push(item)
             }else{
@@ -123,7 +123,7 @@ $.extend(Todos.prototype,{
                 return value
             }
         });
-        (this.todos.total>0)&&(this.todos.total--);                                              //这句不明白什么意思?
+        (this.todos.total>0)&&(this.todos.total--);
         this.setItem(this.todos.items);
     },
     edit: function (index, completed) {
